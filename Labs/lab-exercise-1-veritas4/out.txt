@@ -1,0 +1,2 @@
+Area of triangular shape: 2
+Area of quad shape: 4

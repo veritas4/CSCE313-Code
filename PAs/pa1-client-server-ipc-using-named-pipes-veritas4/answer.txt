@@ -1,0 +1,19 @@
+When transferring larger files, the server-client processes take a considerable amount
+of time to transfer the data. In my program I recorded the time taken(seconds) to 
+transfer files of different sizes(bytes).
+
+10KB : 0.0037077 seconds
+200KB : 0.0417547 seconds
+1MB : 0.253561 seconds
+10MB : 1.82835 seconds
+50MB : 7.35109 seconds
+100MB : 14.1602 seconds
+
+If we were to plot this data with size vs time, we could observe how rapidly the time
+increases as we start to transfer significantly large files. The main bottleneck here
+occurs when are are using the cread() function to read from the channel into the buffer. 
+This happens  because the buffer size is by default 256 bytes and isn't capable of storing
+much of the data from the file at once, so we have to continously read data in chunks 
+until we have read all of the data. However, even if we were to increase the size of 
+the buffer the time taken would be considerably large, since copying from/to memory
+is an expensive task.
